@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
 import config from "../config/config.js"
-import { ApiError } from "../utils/ApiError.util"
+import { ApiError } from "../utils/ApiError.util.js"
 
 export const verifyToken = (req, res, next) => {
     const token = req.cookies.accessToken;

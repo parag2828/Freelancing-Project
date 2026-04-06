@@ -1,9 +1,10 @@
 import mongoose from "mongoose"
+import config from "../config/config.js"
 
 const connectDB = async () => {
     try {
-        // Just use the URI directly since it already contains "/freelancing"
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}`)
+       
+        const connectionInstance = await mongoose.connect(`${config.MONGODB_URI}`)
         
         console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
        

@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { ApiError } from '../utils/ApiError.js';
+import { ApiError } from '../utils/ApiError.util.js';
 
 dotenv.config();
 
