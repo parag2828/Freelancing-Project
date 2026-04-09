@@ -19,8 +19,13 @@ export const createGig = asyncHandler(async(req, resizeBy, next) => {
 })
 
 export const deleteGig = asyncHandler(async(req, resizeBy, next) => {
-    
-})
+    const gig = await Gig.findById(req.params.id)
+    if (gig.userId !== req.userId) {
+        return new ApiError(403, "You can delete only your gig!")}
+
+    await Gig.findByIdAndDelete(req.params.id)
+    resizeBy.status(200).json(new ApiResponse(200, {}, "Gig has been deleted!"))
+    })
 
 export const getGig = asyncHandler(async(req, resizeBy, next) => {
     
