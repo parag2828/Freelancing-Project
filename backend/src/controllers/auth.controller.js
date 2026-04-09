@@ -61,7 +61,7 @@ export const login = asyncHandler(async (req, res, next) => {
         .cookie("accessToken", token, {
             httpOnly: true,
             secure:false, //make it true while deploy 
-            sameSite: "none"
+            sameSite: "lax"
         })
         .status(200) 
         .json(new ApiResponse(200, info, "User logged in successfully"));
