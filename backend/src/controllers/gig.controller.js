@@ -3,7 +3,7 @@ import { ApiError } from "../utils/ApiError.util.js"
 import { ApiResponse } from "../utils/ApiResponse.util.js"
 import { asyncHandler } from "../utils/asyncHandler.util.js"
 
-export const createGig = asyncHandler(async(req, resizeBy, next) => {
+export const createGig = asyncHandler(async(req, res, next) => {
    
     if (!req.isSeller){
         return new ApiError(403, "Only sellers can create a gig!")
@@ -18,7 +18,7 @@ export const createGig = asyncHandler(async(req, resizeBy, next) => {
     resizeBy.status().json(new ApiResponse(201, savedGig,"Gig saved successfully!"))
 })
 
-export const deleteGig = asyncHandler(async(req, resizeBy, next) => {
+export const deleteGig = asyncHandler(async(req, res, next) => {
     const gig = await Gig.findById(req.params.id)
     if (gig.userId !== req.userId) {
         return new ApiError(403, "You can delete only your gig!")}
@@ -27,10 +27,10 @@ export const deleteGig = asyncHandler(async(req, resizeBy, next) => {
     resizeBy.status(200).json(new ApiResponse(200, {}, "Gig has been deleted!"))
     })
 
-export const getGig = asyncHandler(async(req, resizeBy, next) => {
+export const getGig = asyncHandler(async(req, res, next) => {
     
 })
 
-export const getGigs = asyncHandler(async(req, resizeBy, next) => {
+export const getGigs = asyncHandler(async(req, res, next) => {
     
 })
