@@ -1,8 +1,8 @@
 import React, { useReducer, useState } from "react";
-import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
-import upload from "../../utils/upload";
+import { gigReducer, INITIAL_STATE } from "../reducers/gigReducer.js";
+import upload from "../utils/upload.js";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import newRequest from "../../utils/newRequest";
+import newRequest from "../utils/newRequest.js";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
