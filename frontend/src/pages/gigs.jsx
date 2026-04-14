@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import GigCard from "../../components/gigCard/GigCard";
+import GigCard from "../components/GigCard.jsx";
 import { useQuery } from "@tanstack/react-query";
-import newRequest from "../../utils/newRequest";
+import newRequest from "../utils/newRequest.js";
 import { useLocation } from "react-router-dom";
 
 function Gigs() {

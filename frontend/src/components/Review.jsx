@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import newRequest from "../../utils/newRequest";
+import newRequest from "../utils/newRequest.js";
 
 const Review = ({ review }) => {
   const { isLoading, error, data } = useQuery({
