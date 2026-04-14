@@ -1,17 +1,19 @@
-import createError from "../utils/createError.js";
-import Message from "../models/message.model.js";
-import Conversation from "../models/conversation.model.js";
+import { asyncHandler } from "../utils/asyncHandler.util.js";
+import { ApiError } from "../utils/ApiError.util.js"
+import { ApiResponse } from "../utils/ApiResponse.util.js"
+import Message from "../models/message.model.js"
+import Conversation from "../models/conversation.model.js"
 
-export const createMessage = async (req, res, next) => {
-  const newMessage = new Message({
-    conversationId: req.body.conversationId,
+export const createMessage = asyncHandler(async (req, res, next) => {
+    const newMessage = new Message({
+        conversationId: req.body.conversationId,
     userId: req.userId,
-    desc: req.body.desc,
-  });
-  try {
+    desc: req.body.desc
+    })
+
     const savedMessage = await newMessage.save();
-    await Conversation.findOneAndUpdate(
-      { id: req.body.conversationId },
+    await Conversation.findByIdAndUpdate(
+        { id: req.body.conversationId },
       {
         $set: {
           readBySeller: req.isSeller,
@@ -20,18 +22,13 @@ export const createMessage = async (req, res, next) => {
         },
       },
       { new: true }
-    );
+    )
 
-    res.status(201).send(savedMessage);
-  } catch (err) {
-    next(err);
-  }
-};
-export const getMessages = async (req, res, next) => {
-  try {
-    const messages = await Message.find({ conversationId: req.params.id });
-    res.status(200).send(messages);
-  } catch (err) {
-    next(err);
-  }
-};
+    res.status(201).json(new ApiResponse(201, savedMessage, {}))
+})
+
+export const getMessage = asyncHandler(async(req, res, next)=> {
+    const messages = await Message.find({ conversationId: req.params.id })
+
+    res.status(200).json(200, messages)
+})
